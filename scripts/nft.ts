@@ -39,3 +39,30 @@ task("SetBaseUri", "")
         console.log(`New base uri: ${baseUri}`);
     });
     
+task("MintNft", "")
+    .addParam("contract", "Hash of the Nft")
+    .addParam("tokenid", "Token ID")
+    .addParam("tokenuri", "Token uri")
+    .setAction(async (taskArgs, hre) => {
+        const contractFactory = await hre.ethers.getContractFactory("MoviePosters");
+        const contractAttached = contractFactory.attach(taskArgs.contract);
+
+        const [owner] = await hre.ethers.getSigners();
+
+        const mintTx = await contractAttached.safeMintWithUri(owner.address, taskArgs.tokenid, taskArgs.tokenuri);
+        await mintTx.wait();
+        
+        console.log(`Minted token ${taskArgs.tokenid} with uri ${taskArgs.tokenuri}`);
+      });
+
+task("GetTokenUri", "")
+    .addParam("contract", "Hash of the Nft")
+    .addParam("tokenid", "Token ID")
+    .setAction(async (taskArgs, hre) => {
+        const contractFactory = await hre.ethers.getContractFactory("MoviePosters");
+        const contractAttached = contractFactory.attach(taskArgs.contract);
+
+        const tokenUri = await contractAttached.tokenURI(taskArgs.tokenid);
+        console.log(`Uri for token ${0}: ${tokenUri}`);
+    });
+  

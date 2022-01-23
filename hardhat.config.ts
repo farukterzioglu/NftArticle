@@ -8,6 +8,7 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 
 import "./scripts/ipfs.ts";
+import "./scripts/nft.ts";
 
 dotenv.config();
 

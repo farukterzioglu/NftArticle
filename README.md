@@ -1,3 +1,6 @@
+Sample code for the article: https://medium.com/@farukterzioglu/nft-nas%C4%B1l-%C3%BCretilir-1139736929fb  
+
+  
 # Advanced Sample Hardhat Project
 
 This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
